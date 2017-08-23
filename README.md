@@ -1,5 +1,8 @@
 # Notes app by CongNT
 
+## Android App
+https://github.com/trongcong/Notes
+
 ## SQL
 - Cấu trúc bảng cho bảng `users`
 <pre>
