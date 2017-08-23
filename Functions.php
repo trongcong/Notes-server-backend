@@ -6,7 +6,7 @@ class Functions{
     private $db;
     public function __construct() {
         
-            $this -> db = new DBOperations();
+        $this -> db = new DBOperations();
     
     }
 
@@ -68,7 +68,7 @@ class Functions{
            if(!$result) {
     
             $response["result"] = "failure";
-            $response["message"] = "Invaild Login Credentials";
+            $response["message"] = "Invalid Login Credentials";
             return json_encode($response);
     
            } else {
@@ -83,7 +83,7 @@ class Functions{
         } else {
     
           $response["result"] = "failure";
-          $response["message"] = "Invaild Login Credentials";
+          $response["message"] = "Invalid Login Credentials";
           return json_encode($response);
     
         }
