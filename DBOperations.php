@@ -159,6 +159,24 @@ class DBOperations {
         }
     }
 
+    public function getNotesByUser($user_id) {
+        $sql = 'SELECT * FROM notes WHERE user_id = :user_id ORDER BY last_update DESC';
+        
+        $query = $this->conn->prepare($sql);
+        $query->execute(array(
+            ':user_id' => $user_id
+            )
+        );
+          
+        if ($query && $query->rowCount() > 0) {
+            $notes = $query->fetchAll(PDO::FETCH_ASSOC); 
+            return $notes;
+        } else {
+            return false;
+        }
+ 
+    }
+
     public function getHash($password) {
         $salt = sha1(rand());
         $salt = substr($salt, 0, 10);

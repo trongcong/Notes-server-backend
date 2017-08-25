@@ -45,7 +45,7 @@ class Functions {
 
         if (!empty($notes_id) && !empty($user_id) && !empty($notes_content)) {
             if ($db->checkUserExist($user_id)) {
-                if ($db->checkNotesExist($notes_id)) {
+                if (!$db->checkNotesExist($notes_id)) {
                     # code...
                     $result = $db->updateNotes($notes_id, $user_id, $notes_content);
                     if ($result) {
@@ -81,7 +81,7 @@ class Functions {
         
         if (!empty($notes_id) && !empty($user_id)) {
             if ($db->checkUserExist($user_id)) {
-                if ($db->checkNotesExist($notes_id)) {
+                if (!$db->checkNotesExist($notes_id)) {
                     # code...
                     $result = $db->deleteNotes($notes_id, $user_id);
                     if ($result) {
@@ -165,7 +165,38 @@ class Functions {
             return $this->getMsgParamNotEmpty();
         }
     }
+
+    public function receiveNotesData($user_id){
+        # code...
+        $db = $this->db;
+        $user_id = trim($user_id); 
+        if (!empty($user_id)) {
+            if ($db->checkUserExist($user_id)) {
+                $result = $db->getNotesByUser($user_id); 
+                if (!$result) {
+                    $response["result"] = "failure";
+                    $response["message"] = "Receive data failure or User has no data !";
+                    return json_encode($response);
+                } else {
+                    $response["result"] = "success";
+                    $response["message"] = "Receive data successfully!";
+                    $response["notes"] = $result;
+                    return json_encode($response);
+                }
+            } else {
+                $response["result"] = "failure";
+                $response["message"] = "User not exist !";
+                return json_encode($response);
+            }
+        } else {
+            return $this->getMsgParamNotEmpty();
+        }
+    }
     
+    public function isEmailValid($email){
+        return filter_var($email, FILTER_VALIDATE_EMAIL);
+    }
+        
     public function getMsgParamNotEmpty() {
         $response["result"] = "failure";
         $response["message"] = "Parameters should not be empty !";

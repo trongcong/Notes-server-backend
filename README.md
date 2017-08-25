@@ -8,6 +8,7 @@
     3. <a href="#runinsertnotes">runInsertNotes()</a>
     4. <a href="#runupdatenotes">runUpdateNotes()</a> 
     5. <a href="#rundeletenotes">runDeleteNotes()</a> 
+    6. <a href="#receivenotesdata">receiveNotesData()</a> 
 
 ## Android App
 https://github.com/trongcong/Notes
@@ -245,3 +246,49 @@ runDeleteNotes($notes_id, $user_id) {
     "message": "Notes Delete Failure"
 }
 </pre>
+
+### receiveNotesData()
+<pre>
+receiveNotesData($user_id) {
+    # code...
+}
+</pre>
+
+#### Response: 
+* Success: Receive data successfully!
+<pre>
+{
+    "result": "success",
+    "message": "Receive data successfully!",
+    "notes": [
+        {
+            "id": "4",
+            "user_id": "599d9824b20f94.38318232",
+            "notes_content": "I do!",
+            "created_at": "2017-08-25 23:31:32",
+            "last_update": "2017-08-25 23:31:32"
+        } 
+    ]
+}
+</pre>  
+* Failure: Receive data failure or User has no data !
+<pre>
+{
+    "result": "failure",
+    "message": "Receive data failure or User has no data !"
+}
+</pre> 
+* Failure: User not exist !
+<pre>
+{
+    "result": "failure",
+    "message": "User not exist !"
+}
+</pre> 
+* Failure: Parameters should not be empty !
+<pre>
+{
+    "result": "failure",
+    "message": "Parameters should not be empty !"
+}
+</pre> 
