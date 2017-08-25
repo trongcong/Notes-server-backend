@@ -1,7 +1,17 @@
 # Notes app by CongNT
 
+1. <a href="#android-app">Android App</a>
+2. <a href="#sql">SQL</a>
+3. <a href="#functions">Functions</a>
+    1. <a href="#registeruser">registerUser()</a>
+    2. <a href="#loginuser">loginuser()</a>
+    3. <a href="#runinsertnotes">runInsertNotes()</a>
+    4. <a href="#runupdatenotes">runUpdateNotes()</a> 
+    5. <a href="#rundeletenotes">runDeleteNotes()</a> 
+
 ## Android App
 https://github.com/trongcong/Notes
+
 
 ## SQL
 - Cấu trúc bảng cho bảng `users`
@@ -110,3 +120,128 @@ function loginUser($email, $password){
     "message": "Parameters should not be empty !"
 }
 </pre> 
+
+### runInsertNotes()
+
+<pre>
+runInsertNotes($user_id, $notes_content){
+    #code
+}
+</pre>
+
+#### Response: 
+* Success
+<pre>
+{
+    "result": "success",
+    "message": "Notes Insert Successfully !"
+}
+</pre>
+* Failure: User not exist !
+<pre>
+{
+    "result": "failure",
+    "message": "User not exist !"
+}
+</pre>
+* Failure: Parameters should not be empty !
+<pre>
+{
+    "result": "failure",
+    "message": "Parameters should not be empty !"
+}
+</pre>
+* Failure: Notes Insert Failure
+<pre>
+{
+    "result": "failure",
+    "message": "Notes Insert Failure"
+}
+</pre>
+
+### runUpdateNotes()
+<pre>
+runUpdateNotes($notes_id, $user_id, $notes_content) {
+    # code...
+}
+</pre>
+#### Response: 
+* Success
+<pre>
+{
+    "result": "success",
+    "message": "Notes Update Successfully !"
+}
+</pre>
+* Failure: User not exist !
+<pre>
+{
+    "result": "failure",
+    "message": "User not exist !"
+}
+</pre>
+* Failure: Notes not exist !
+<pre>
+{
+    "result": "failure",
+    "message": "Notes not exist !"
+}
+</pre>
+* Failure: Parameters should not be empty !
+<pre>
+{
+    "result": "failure",
+    "message": "Parameters should not be empty !"
+}
+</pre>
+* Failure: Notes Update Failure
+<pre>
+{
+    "result": "failure",
+    "message": "Notes Update Failure"
+}
+</pre>
+
+### runDeleteNotes()
+<pre>
+runDeleteNotes($notes_id, $user_id) {
+    # code...
+}
+</pre>
+
+#### Response: 
+* Success
+<pre>
+{
+    "result": "success",
+    "message": "Notes Deleted Successfully !"
+}
+</pre>
+* Failure: User not exist !
+<pre>
+{
+    "result": "failure",
+    "message": "User not exist !"
+}
+</pre>
+* Failure: Notes not exist !
+<pre>
+{
+    "result": "failure",
+    "message": "Notes not exist !"
+}
+</pre>
+* Failure: Parameters should not be empty !
+<pre>
+{
+    "result": "failure",
+    "message": "Parameters should not be empty !"
+}
+</pre>
+* Failure: Notes Delete Failure
+<pre>
+{
+    "result": "failure",
+    "message": "Notes Delete Failure"
+}
+</pre>
