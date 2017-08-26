@@ -1,6 +1,7 @@
 # Notes app by CongNT
 
 1. <a href="#android-app">Android App</a>
+    1. <a href="#call-functions-backend-in-app">Call functions backend in app</a>
 2. <a href="#sql">SQL</a>
 3. <a href="#functions">Functions</a>
     1. <a href="#registeruser">registerUser()</a>
@@ -12,8 +13,99 @@
 
 ## Android App
 https://github.com/trongcong/Notes
+### Call functions backend in app
+* REGISTER_OPERATION: 
+<pre>
+public static final String REGISTER_OPERATION = "register";
+</pre>
+* LOGIN_OPERATION: #code = "login"
+* INSERTNOTES_OPERATION:  #code = "insertNotes"
+* UPDATENOTES_OPERATION:  #code = "updateNotes"
+* DELETENOTES_OPERATION:  #code = "deleteNotes"
+<pre>
+Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(Constants.BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
 
+RequestInterface requestInterface = retrofit.create(RequestInterface.class);
 
+User user = new User();
+user.setName(name);
+user.setEmail(email);
+user.setPassword(password);
+user.setPassword(phone);
+
+ServerRequest request = new ServerRequest();
+request.setOperation(Constants.REGISTER_OPERATION);
+request.setUser(user);
+Call<ServerResponse> response = requestInterface.operation(request);
+
+response.enqueue(new Callback<ServerResponse>() {
+    @Override
+    public void onResponse(Call<ServerResponse> call, retrofit2.Response<ServerResponse> response) {
+        #code...
+    }
+    @Override
+    public void onFailure(Call<ServerResponse> call, Throwable t) {
+        #code
+    }
+}
+</pre>
+### Class RequestInterface  
+<pre>
+public interface RequestInterface {
+    @POST("...path link/")
+    Call<ServerResponse> operation(@Body ServerRequest request);
+}
+</pre>
+### Class ServerRequest
+<pre>
+public class ServerRequest {
+
+    private String operation;
+    private User user;
+    private Notes notes;
+
+    public void setOperation(String operation) {
+        this.operation = operation;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public void setNotes(Notes notes) {
+        this.notes = notes;
+    }
+}
+</pre>
+### Class ServerResponse
+<pre>
+public class ServerResponse {
+
+    private String result;
+    private String message;
+    private User user;
+    private Notes notes;
+
+    public String getResult() {
+        return result;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public Notes getNotes() {
+        return notes;
+    }
+}
+</pre>
 ## SQL
 - Cấu trúc bảng cho bảng `users`
 <pre>
