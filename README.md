@@ -354,6 +354,16 @@ receiveNotesData($user_id) {
 }
 </pre>
 
+#### Struct
+<pre>
+
+http://dev.2dev4u.com/notes/index.php?operation=receiveNotes&user_id=599d9824b20f94.38318232
+
+operation: Required
+user_id: Required
+
+</pre>
+
 #### Response: 
 * Success: Receive data successfully!
 <pre>
