@@ -22,6 +22,7 @@ public static final String REGISTER_OPERATION = "register";
 * INSERTNOTES_OPERATION:  #code = "insertNotes"
 * UPDATENOTES_OPERATION:  #code = "updateNotes"
 * DELETENOTES_OPERATION:  #code = "deleteNotes"
+* RECEIVENOTES_OPERATION:  #code = "receiveNotes"
 <pre>
 Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Constants.BASE_URL)
@@ -55,8 +56,15 @@ response.enqueue(new Callback<ServerResponse>() {
 ### Class RequestInterface  
 <pre>
 public interface RequestInterface {
+    // POST from client to server: register, login, insertNotes, updateNotes, deleteNotes
+    // Server return result <a href="#functions">See functions</a>
     @POST("...path link/")
     Call<ServerResponse> operation(@Body ServerRequest request);
+
+    // GET notes from server: receiveNotes
+    // Server return result <a href="#receivenotesdata">See functions receiveNotesData</a>
+    @GET("...path link/") 
+    Call<List<Notes>> getNotes(@Query("operation") String operation, @Query("user_id") String user_id);
 }
 </pre>
 ### Class ServerRequest
