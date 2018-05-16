@@ -201,8 +201,8 @@ function loginUser($email, $password){
     "message": "Login Successful",
     "user": {
         "name": "Cờ Ông Công",
-        "email": "trongcong96@gmail.com",
-        "phone": "0987485414",
+        "email": "admin@gmail.com",
+        "phone": "098123456..",
         "unique_id": "599071705f9b23.37861713"
     }
 }
